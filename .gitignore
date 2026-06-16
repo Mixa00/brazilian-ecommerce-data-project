@@ -1,6 +1,21 @@
+# C# / Visual Studio
 bin/
 obj/
 .vs/
 
+# Data files
+data/*.csv
+data/*.zip
 data/raw/*
 data/processed/*
+
+# Local environment files
+.env
+
+# SQL Server / local exports
+*.bak
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
