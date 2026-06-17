@@ -21,3 +21,14 @@ CREATE TABLE stg.orders (
     order_estimated_delivery_date DATETIME2
 );
 GO
+
+CREATE TABLE stg.order_items (
+    order_id NVARCHAR(50),
+    order_item_id INT,
+    product_id NVARCHAR(50),
+    seller_id NVARCHAR(50),
+    shipping_limit_date DATETIME2,
+    price DECIMAL(10, 2),
+    freight_value DECIMAL(10, 2)
+);
+GO
