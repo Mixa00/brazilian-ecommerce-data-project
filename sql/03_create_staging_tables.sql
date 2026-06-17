@@ -82,3 +82,9 @@ CREATE TABLE stg.geolocation (
     geolocation_state CHAR(2)
 );
 GO
+
+CREATE TABLE stg.product_category_name_translation (
+    product_category_name NVARCHAR(100),
+    product_category_name_english NVARCHAR(100)
+);
+GO
