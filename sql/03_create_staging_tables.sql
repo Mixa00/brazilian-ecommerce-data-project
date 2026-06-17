@@ -32,3 +32,12 @@ CREATE TABLE stg.order_items (
     freight_value DECIMAL(10, 2)
 );
 GO
+
+CREATE TABLE stg.order_payments (
+    order_id NVARCHAR(50),
+    payment_sequential INT,
+    payment_type NVARCHAR(50),
+    payment_installments INT,
+    payment_value DECIMAL(10, 2)
+);
+GO
