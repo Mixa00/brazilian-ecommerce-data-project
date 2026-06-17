@@ -52,3 +52,16 @@ CREATE TABLE stg.order_reviews (
     review_answer_timestamp DATETIME2
 );
 GO
+
+CREATE TABLE stg.products (
+    product_id NVARCHAR(50),
+    product_category_name NVARCHAR(100),
+    product_name_length INT,
+    product_description_length INT,
+    product_photos_qty INT,
+    product_weight_g INT,
+    product_length_cm INT,
+    product_height_cm INT,
+    product_width_cm INT
+);
+GO
