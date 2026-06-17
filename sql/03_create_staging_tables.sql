@@ -73,3 +73,12 @@ CREATE TABLE stg.sellers (
     seller_state CHAR(2)
 );
 GO
+
+CREATE TABLE stg.geolocation (
+    geolocation_zip_code_prefix INT,
+    geolocation_lat DECIMAL(9, 6),
+    geolocation_lng DECIMAL(9, 6),
+    geolocation_city NVARCHAR(100),
+    geolocation_state CHAR(2)
+);
+GO
