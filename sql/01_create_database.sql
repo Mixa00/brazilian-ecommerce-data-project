@@ -1,0 +1,5 @@
+CREATE DATABASE BrazilianECommerce;
+GO
+
+ALTER DATABASE BrazilianECommerce SET RECOVERY SIMPLE;
+GO
