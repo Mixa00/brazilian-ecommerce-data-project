@@ -56,8 +56,8 @@ GO
 CREATE TABLE stg.products (
     product_id NVARCHAR(50),
     product_category_name NVARCHAR(100),
-    product_name_length INT,
-    product_description_length INT,
+    product_name_lenght INT,
+    product_description_lenght INT,
     product_photos_qty INT,
     product_weight_g INT,
     product_length_cm INT,
@@ -72,3 +72,4 @@ CREATE TABLE stg.sellers (
     seller_city NVARCHAR(100),
     seller_state CHAR(2)
 );
+GO
