@@ -41,3 +41,14 @@ CREATE TABLE stg.order_payments (
     payment_value DECIMAL(10, 2)
 );
 GO
+
+CREATE TABLE stg.order_reviews (
+    review_id NVARCHAR(50),
+    order_id NVARCHAR(50),
+    review_score INT,
+    review_comment_title NVARCHAR(MAX),
+    review_comment_message NVARCHAR(MAX),
+    review_creation_date DATETIME2,
+    review_answer_timestamp DATETIME2
+);
+GO
