@@ -65,3 +65,10 @@ CREATE TABLE stg.products (
     product_width_cm INT
 );
 GO
+
+CREATE TABLE stg.sellers (
+    seller_id NVARCHAR(50),
+    seller_zip_code_prefix INT,
+    seller_city NVARCHAR(100),
+    seller_state CHAR(2)
+);
