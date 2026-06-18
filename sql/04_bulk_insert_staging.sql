@@ -72,3 +72,15 @@ WITH (
     TABLOCK
 );
 GO
+
+BULK INSERT stg.product_category_name_translation
+FROM 'C:\Users\mihajlo.stankovic\Documents\Codex\brazilian_e-commerce_project\data\raw\product_category_name_translation.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+GO
