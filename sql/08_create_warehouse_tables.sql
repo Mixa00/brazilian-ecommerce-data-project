@@ -23,3 +23,14 @@ WHERE
 	TABLE_SCHEMA = 'dw'
 	AND TABLE_NAME = 'dim_customers';
 */
+
+CREATE TABLE dw.dim_sellers (
+	seller_key INT IDENTITY(1, 1) NOT NULL,
+	seller_id NVARCHAR(50) NOT NULL,
+	seller_zip_code_prefix INT NULL,
+	seller_city NVARCHAR(100) NULL,
+	seller_state CHAR(2) NULL,
+
+	CONSTRAINT PK_dim_sellers PRIMARY KEY(seller_key)
+);
+GO
