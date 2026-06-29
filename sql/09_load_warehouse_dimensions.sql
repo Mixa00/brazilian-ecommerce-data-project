@@ -17,3 +17,18 @@ SELECT
 FROM
 	stg.customers;
 GO
+
+INSERT INTO dw.dim_sellers (
+	seller_id,
+	seller_zip_code_prefix,
+	seller_city,
+	seller_state
+)
+SELECT
+	seller_id,
+	seller_zip_code_prefix,
+	seller_city,
+	seller_state
+FROM
+	stg.sellers;
+GO
