@@ -51,3 +51,16 @@ CREATE TABLE dw.dim_products (
 	CONSTRAINT PK_dim_products PRIMARY KEY(product_key)
 );
 GO
+
+CREATE TABLE dw.dim_date (
+	date_key INT NOT NULL,
+	full_date DATE NOT NULL,
+	day_number INT NOT NULL,
+	month_number INT NOT NULL,
+	month_name NVARCHAR(20) NOT NULL,
+	quarter_number INT NOT NULL,
+	year_number INT NOT NULL,
+
+	CONSTRAINT PK_dim_date PRIMARY KEY(date_key)
+);
+GO
