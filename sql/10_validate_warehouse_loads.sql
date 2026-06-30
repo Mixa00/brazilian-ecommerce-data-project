@@ -14,3 +14,10 @@ SELECT
 FROM
 	dw.dim_sellers;
 GO
+
+SELECT
+	'dw.dim_products' AS table_name,
+	COUNT(*) AS row_count
+FROM
+	dw.dim_products;
+GO
