@@ -64,3 +64,31 @@ CREATE TABLE dw.dim_date (
 	CONSTRAINT PK_dim_date PRIMARY KEY(date_key)
 );
 GO
+
+CREATE TABLE dw.fact_order_items (
+	order_item_key INT IDENTITY(1, 1) NOT NULL,
+	order_id NVARCHAR(50) NOT NULL,
+	order_item_id INT NOT NULL,
+	customer_key INT NOT NULL,
+	product_key INT NOT NULL,
+	seller_key INT NOT NULL,
+	order_date_key INT NOT NULL,
+	shipping_limit_date DATETIME2 NULL,
+	price DECIMAL(10, 2) NOT NULL,
+	freight_value DECIMAL(10, 2) NOT NULL,
+
+	CONSTRAINT PK_fact_order_items PRIMARY KEY(order_item_key),
+
+	CONSTRAINT FK_fact_order_items_dim_customers
+		FOREIGN KEY(customer_key) REFERENCES dw.dim_customers(customer_key),
+
+	CONSTRAINT FK_fact_order_items_dim_products
+		FOREIGN KEY(product_key) REFERENCES dw.dim_products(product_key),
+
+	CONSTRAINT FK_fact_order_items_dim_sellers
+		FOREIGN KEY(seller_key) REFERENCES dw.dim_sellers(seller_key),
+
+	CONSTRAINT FK_fact_order_items_dim_date
+		FOREIGN KEY(order_date_key) REFERENCES dw.dim_date(date_key)
+);
+GO
