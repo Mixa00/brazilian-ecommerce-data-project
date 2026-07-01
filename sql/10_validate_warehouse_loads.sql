@@ -21,3 +21,16 @@ SELECT
 FROM
 	dw.dim_products;
 GO
+
+SELECT
+	'dw.dim_date' AS table_name,
+	COUNT(*) AS row_count
+FROM
+	dw.dim_date;
+GO
+SELECT
+	MIN(full_date) AS min_date,
+	MAX(full_date) AS max_date
+FROM
+	dw.dim_date;
+GO
