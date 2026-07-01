@@ -58,4 +58,43 @@ SELECT
 	p.product_width_cm
 FROM
 	stg.products as p
-	LEFT JOIN stg.product_category_name_translation as t ON p.product_category_name = t.product_category_name
+	LEFT JOIN stg.product_category_name_translation as t ON p.product_category_name = t.product_category_name;
+GO
+-- ============================
+DECLARE @StartDate DATE = '2016-01-01';
+DECLARE @EndDate Date = '2018-12-31';
+
+WITH DataSeries AS (
+	SELECT
+		@StartDate as full_date
+
+	UNION ALL
+
+	SELECT
+		DATEADD(DAY, 1, full_date)
+	FROM
+		DataSeries
+	WHERE
+		full_date < @EndDate
+)
+INSERT INTO dw.dim_date (
+	date_key,
+	full_date,
+	day_number,
+	month_number,
+	month_name,
+	quarter_number,
+	year_number
+)
+SELECT
+	CONVERT(INT, FORMAT(full_date, 'yyyyMMdd')) AS date_key,
+	full_date,
+	DAY(full_date) AS day_number,
+	MONTH(full_date) AS month_number,
+	DATENAME(MONTH, full_date) AS month_name,
+	DATEPART(QUARTER, full_date) AS quarter_number,
+	YEAR(full_date) AS year_number
+FROM
+	DataSeries
+OPTION (MAXRECURSION 0);
+GO
