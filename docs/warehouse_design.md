@@ -53,3 +53,47 @@ This table is useful because it keeps product-level detail and supports analysis
 The `stg.order_reviews` table is not included in the first warehouse version because it was not imported during the initial staging load.
 
 Product categories without English translation will be handled during product dimension creation by using a fallback value.
+
+## Star Schema Explanation
+
+The warehouse layer follows a star schema idea.
+
+In this model, dimension tables describe business entities, while fact tables store business events and numeric measures.
+
+The main planned fact table is `dw.fact_order_items`.
+
+One row in `dw.fact_order_items` will represent one product item within one order.
+
+The surrounding dimension tables answer descriptive questions:
+
+| Question | Dimension |
+|---|---|
+| Who bought the item? | `dw.dim_customers` |
+| What product was bought? | `dw.dim_products` |
+| Who sold the item? | `dw.dim_sellers` |
+| When was the item ordered? | `dw.dim_date` |
+
+The fact table will store keys that point to these dimensions, together with numeric measures such as `price` and `freight_value`.
+
+Simple model:
+
+```text
+                 dw.dim_date
+                     |
+dw.dim_customers -- dw.fact_order_items -- dw.dim_products
+                     |
+                dw.dim_sellers
+```
+
+This structure makes analytical queries easier, for example:
+
+- revenue by product category
+- revenue by customer state
+- revenue by seller state
+- revenue by month or year
+
+## Known Considerations
+
+The `stg.order_reviews` table is not included in the first warehouse version because it was not imported during the initial staging load.
+
+Product categories without English translation are handled during product dimension loading by using the original category name as a fallback value.
