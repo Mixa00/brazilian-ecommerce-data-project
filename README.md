@@ -35,3 +35,25 @@ data/
 docs/
 sql/
 src/
+```
+
+## Current Progress
+
+- Initialized Git project structure
+- Documented dataset structure and raw schema
+- Created SQL Server database and staging schema
+- Imported raw CSV files into staging tables
+- Performed initial data quality checks
+- Designed a warehouse star schema
+- Created and loaded dimension tables
+- Created and loaded `dw.fact_order_items`
+- Added initial analytical SQL queries
+
+## Current Analytics
+
+The project currently includes SQL queries for:
+
+- revenue by product category
+- revenue by customer state
+- revenue by month
+- revenue by seller state
