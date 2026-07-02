@@ -30,3 +30,23 @@ GROUP BY
 ORDER BY
 	total_revenue DESC;
 GO
+
+-- Revenue by month
+SELECT
+	d.year_number,
+	d.month_number,
+	d.month_name,
+	COUNT(*) AS order_item_count,
+	SUM(oi.price) AS total_revenue,
+	SUM(oi.freight_value) AS total_freight
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_date AS d ON oi.order_date_key = d.date_key
+GROUP BY
+	d.year_number,
+	d.month_number,
+	d.month_name
+ORDER BY
+	d.year_number ASC,
+	d.month_number ASC;
+GO
