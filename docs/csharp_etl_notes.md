@@ -15,8 +15,9 @@ The application accepts a CSV file path as a command-line argument and prints ba
 - file name
 - header row
 - total line count
+- data row count
 
-The line count includes the header row.
+The line count includes the header row, while the data row count excludes it.
 
 ## Example Usage
 
@@ -30,6 +31,7 @@ dotnet run --project src/OlistEtl -- data/raw/olist_customers_dataset.csv
 File: olist_customers_dataset.csv
 Header: "customer_id","customer_unique_id","customer_zip_code_prefix","customer_city","customer_state"
 Line count: 99442
+Data row count: 99441
 ```
 
 ## Error Handling
