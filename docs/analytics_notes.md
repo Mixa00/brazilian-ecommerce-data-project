@@ -87,3 +87,14 @@ Tables used:
 
 Result:
 Shows the top sellers by total product revenue, including seller state, number of sold order items, total revenue, and total freight value.
+
+## Overall Sales Summary
+
+Business question:
+What are the main overall sales KPIs?
+
+Tables used:
+- `dw.fact_order_items`
+
+Result:
+Shows total number of sold order items, total product revenue, total freight value, average item price, and average freight value.
