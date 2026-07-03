@@ -82,3 +82,21 @@ HAVING
 ORDER BY
 	average_item_price DESC;
 GO
+
+-- Freight as Percentage of Revenue by Product Category
+SELECT
+	p.product_category_name_english,
+	COUNT(*) AS order_item_count,
+	SUM(oi.price) AS total_revenue,
+	SUM(oi.freight_value) AS total_freight,
+	(SUM(oi.freight_value) / NULLIF(SUM(oi.price), 0)) * 100 AS freight_to_revenue_pct
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_products AS p ON oi.product_key = p.product_key
+GROUP BY
+	p.product_category_name_english
+HAVING
+	COUNT(*) >= 50
+ORDER BY
+	freight_to_revenue_pct DESC;
+GO
