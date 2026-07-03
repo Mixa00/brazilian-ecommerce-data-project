@@ -51,3 +51,27 @@ Tables used:
 
 Result:
 Shows total revenue, total freight value, and number of sold order items grouped by seller state.
+
+## Top Categories by Average Item Value
+
+Business question:
+Which product categories have the highest average sold item price?
+
+Tables used:
+- `dw.fact_order_items`
+- `dw.dim_products`
+
+Result:
+Shows the top product categories by average item price, including total revenue and number of sold order items. Only categories with at least 50 sold items are included.
+
+## Freight to Revenue by Product Category
+
+Business question:
+Which product categories have the highest freight cost compared to product revenue?
+
+Tables used:
+- `dw.fact_order_items`
+- `dw.dim_products`
+
+Result:
+Shows total revenue, total freight value, and freight as a percentage of revenue for each product category. Only categories with at least 50 sold items are included.
