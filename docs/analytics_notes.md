@@ -75,3 +75,15 @@ Tables used:
 
 Result:
 Shows total revenue, total freight value, and freight as a percentage of revenue for each product category. Only categories with at least 50 sold items are included.
+
+## Top Sellers by Revenue
+
+Business question:
+Which sellers generated the highest revenue?
+
+Tables used:
+- `dw.fact_order_items`
+- `dw.dim_sellers`
+
+Result:
+Shows the top sellers by total product revenue, including seller state, number of sold order items, total revenue, and total freight value.
