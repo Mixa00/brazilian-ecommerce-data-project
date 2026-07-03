@@ -65,3 +65,20 @@ GROUP BY
 ORDER BY
 	total_revenue DESC;
 GO
+
+-- Top 10 product categories by average order item value
+SELECT TOP 10
+	p.product_category_name_english,
+	COUNT(*) AS order_item_count,
+	AVG(oi.price) AS average_item_price,
+	SUM(oi.price) AS total_revenue
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_products AS p ON oi.product_key = p.product_key
+GROUP BY
+	p.product_category_name_english
+HAVING
+	COUNT(*) >= 50
+ORDER BY
+	average_item_price DESC;
+GO
