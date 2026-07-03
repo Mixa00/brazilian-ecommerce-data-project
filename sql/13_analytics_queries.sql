@@ -117,3 +117,14 @@ GROUP BY
 ORDER BY
 	total_revenue DESC;
 GO
+
+-- Overall Sales Summary
+SELECT
+	COUNT(*) AS total_order_items,
+	SUM(oi.price) AS total_revenue,
+	SUM(oi.freight_value) AS total_freight,
+	AVG(oi.price) AS average_item_price,
+	AVG(oi.freight_value) AS average_freight_value
+FROM
+	dw.fact_order_items AS oi;
+GO
