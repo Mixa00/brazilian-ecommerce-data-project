@@ -57,3 +57,23 @@ The project currently includes SQL queries for:
 - revenue by customer state
 - revenue by month
 - revenue by seller state
+
+## C# ETL Helper
+
+The project includes a small C# console application located in `src/OlistEtl`.
+
+The helper can profile a single CSV file or all CSV files in a directory.
+
+Example usage:
+
+```bash
+dotnet run --project src/OlistEtl -- data/raw
+```
+
+Current output includes:
+
+- file name
+- header row
+- total line count
+- data row count
+- directory summary
