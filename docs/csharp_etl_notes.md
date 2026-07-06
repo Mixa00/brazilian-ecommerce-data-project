@@ -69,3 +69,17 @@ dotnet run --project src/OlistEtl -- data/raw
 ```
 
 This is useful for quickly checking all raw dataset files before loading them into SQL Server.
+
+## Directory Summary
+
+When profiling a directory, the application also prints a summary at the end.
+
+Example output:
+
+```text
+Summary
+Files processed: 9
+Total data rows: 1556417
+```
+
+The total includes all CSV files found in the provided directory, including files that were not loaded into SQL Server during the initial import.
