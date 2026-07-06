@@ -55,3 +55,17 @@ This is the first version of the C# ETL helper.
 The current goal is to practice basic command-line input, file existence checks, and reading CSV file metadata.
 
 Later versions may include more advanced CSV parsing and support for importing files with complex text fields, such as order reviews.
+
+## Directory Profiling
+
+The application can also accept a directory path.
+
+When a directory path is provided, the application finds all `.csv` files in that directory and prints basic profile information for each file.
+
+Example usage:
+
+```bash
+dotnet run --project src/OlistEtl -- data/raw
+```
+
+This is useful for quickly checking all raw dataset files before loading them into SQL Server.
