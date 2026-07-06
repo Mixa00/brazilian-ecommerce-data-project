@@ -31,12 +31,21 @@
 
         static void DirectoryProcess(string pathName)
         {
-            Directory.GetFiles(pathName, "*.csv")
-                .ToList()
-                .ForEach(file => ProfileCsvFile(file));
+            List<int> dataRowCounts = new List<int>();
+            List<string> csvFiles = Directory.GetFiles(pathName, "*.csv").ToList();
+
+            foreach(string file in csvFiles)
+            {
+                int dataRowCount = ProfileCsvFile(file);
+                dataRowCounts.Add(dataRowCount);
+            }
+
+            Console.WriteLine("Summary");
+            Console.WriteLine($"Files processed: {csvFiles.Count}");
+            Console.WriteLine($"Total data rows: {dataRowCounts.Sum()}");
         }
 
-        static void ProfileCsvFile(string fileName)
+        static int ProfileCsvFile(string fileName)
         {
             string header = File.ReadLines(fileName).FirstOrDefault() ?? "";
             int numberOfLines = File.ReadLines(fileName).Count();
@@ -47,6 +56,8 @@
             Console.WriteLine($"Line count: {numberOfLines}");
             Console.WriteLine($"Data row count: {dataRowCount}");
             Console.WriteLine();
+
+            return dataRowCount;
         }
     }
 }
