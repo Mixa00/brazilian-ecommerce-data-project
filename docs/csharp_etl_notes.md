@@ -83,3 +83,29 @@ Total data rows: 1556417
 ```
 
 The total includes all CSV files found in the provided directory, including files that were not loaded into SQL Server during the initial import.
+
+## Expected File Validation
+
+When a directory path is provided, the application checks whether the expected raw CSV files are present.
+
+The current expected files are:
+
+- `olist_customers_dataset.csv`
+- `olist_geolocation_dataset.csv`
+- `olist_order_items_dataset.csv`
+- `olist_order_payments_dataset.csv`
+- `olist_order_reviews_dataset.csv`
+- `olist_orders_dataset.csv`
+- `olist_products_dataset.csv`
+- `olist_sellers_dataset.csv`
+- `product_category_name_translation.csv`
+
+Example output:
+
+```text
+Expected files check
+Found: 9
+Missing: 0
+```
+
+If any expected file is missing, the application prints the missing file names.
