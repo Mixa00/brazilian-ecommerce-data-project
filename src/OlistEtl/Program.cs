@@ -25,14 +25,64 @@
                 return;
             }
             else
+            {
                 ProfileCsvFile(path);
+            }
+                
             
+        }
+
+        static void FileCountCheck(List<string> csvFiles, List<string> expectedFiles)
+        {
+            int counter = 0;
+            List<string> missingFiles = new List<string>();
+
+            foreach (var file in expectedFiles)
+            {
+                if (csvFiles.Any(f => Path.GetFileName(f).Equals(file, StringComparison.OrdinalIgnoreCase)))
+                {
+                    counter++;
+                }
+                else
+                {  
+                    missingFiles.Add(file);
+                }
+            }
+            
+            Console.WriteLine("Expected files check");
+            Console.WriteLine($"Found: {counter}");
+            Console.WriteLine($"Missing: {expectedFiles.Count - counter}");
+
+            if (missingFiles.Count > 0)
+            {
+                Console.WriteLine("Missing files:");
+                foreach (string missingFile in missingFiles)
+                {
+                    Console.WriteLine($"- {missingFile}");
+                }
+            }
+
+            Console.WriteLine();
         }
 
         static void DirectoryProcess(string pathName)
         {
+            List<string> expectedFiles = new List<string>
+            {
+                "olist_customers_dataset.csv",
+                "olist_geolocation_dataset.csv",
+                "olist_order_items_dataset.csv",
+                "olist_order_payments_dataset.csv",
+                "olist_order_reviews_dataset.csv",
+                "olist_orders_dataset.csv",
+                "olist_products_dataset.csv",
+                "olist_sellers_dataset.csv",
+                "product_category_name_translation.csv"
+            };
             List<int> dataRowCounts = new List<int>();
             List<string> csvFiles = Directory.GetFiles(pathName, "*.csv").ToList();
+
+            FileCountCheck(csvFiles, expectedFiles);
 
             foreach(string file in csvFiles)
             {
