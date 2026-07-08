@@ -26,7 +26,8 @@
             }
             else
             {
-                ProfileCsvFile(path);
+                CsvProfiler profiler = new CsvProfiler();
+                profiler.ProfileCsvFile(path);
             }
         }
 
@@ -102,7 +103,8 @@
                 "product_category_name_translation.csv"
             };
 
-            //List<int> dataRowCounts = new List<int>();
+            CsvProfiler profiler = new CsvProfiler();
+
             List<CsvProfileResult> profileResults = new List<CsvProfileResult>();
             List<string> csvFiles = Directory.GetFiles(pathName, "*.csv").ToList();
 
@@ -110,11 +112,8 @@
 
             foreach(string file in csvFiles)
             {
-                CsvProfileResult result = ProfileCsvFile(file);
+                CsvProfileResult result = profiler.ProfileCsvFile(file);
                 profileResults.Add(result);
-
-                //int dataRowCount = ProfileCsvFile(file);
-                //dataRowCounts.Add(dataRowCount);
             }
 
             Console.WriteLine("Summary");
@@ -124,25 +123,6 @@
             WriteMarkdownReport(profileResults);
         }
 
-        static CsvProfileResult ProfileCsvFile(string fileName)
-        {
-            string header = File.ReadLines(fileName).FirstOrDefault() ?? "";
-            int numberOfLines = File.ReadLines(fileName).Count();
-            int dataRowCount = Math.Max(numberOfLines - 1, 0);
-
-            Console.WriteLine($"File: {Path.GetFileName(fileName)}");
-            Console.WriteLine($"Header: {header}");
-            Console.WriteLine($"Line count: {numberOfLines}");
-            Console.WriteLine($"Data row count: {dataRowCount}");
-            Console.WriteLine();
-
-            return new CsvProfileResult
-            {
-                FileName = Path.GetFileName(fileName),
-                Header = header,
-                LineCount = numberOfLines,
-                DataRowCount = dataRowCount
-            };
-        }
+        
     }
 }
