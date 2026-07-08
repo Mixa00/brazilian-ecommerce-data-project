@@ -28,8 +28,6 @@
             {
                 ProfileCsvFile(path);
             }
-                
-            
         }
 
         static void FileCountCheck(List<string> csvFiles, List<string> expectedFiles)
@@ -79,23 +77,28 @@
                 "olist_sellers_dataset.csv",
                 "product_category_name_translation.csv"
             };
-            List<int> dataRowCounts = new List<int>();
+
+            //List<int> dataRowCounts = new List<int>();
+            List<CsvProfileResult> profileResults = new List<CsvProfileResult>();
             List<string> csvFiles = Directory.GetFiles(pathName, "*.csv").ToList();
 
             FileCountCheck(csvFiles, expectedFiles);
 
             foreach(string file in csvFiles)
             {
-                int dataRowCount = ProfileCsvFile(file);
-                dataRowCounts.Add(dataRowCount);
+                CsvProfileResult result = ProfileCsvFile(file);
+                profileResults.Add(result);
+
+                //int dataRowCount = ProfileCsvFile(file);
+                //dataRowCounts.Add(dataRowCount);
             }
 
             Console.WriteLine("Summary");
             Console.WriteLine($"Files processed: {csvFiles.Count}");
-            Console.WriteLine($"Total data rows: {dataRowCounts.Sum()}");
+            Console.WriteLine($"Total data rows: {profileResults.Sum(result => result.DataRowCount)}");
         }
 
-        static int ProfileCsvFile(string fileName)
+        static CsvProfileResult ProfileCsvFile(string fileName)
         {
             string header = File.ReadLines(fileName).FirstOrDefault() ?? "";
             int numberOfLines = File.ReadLines(fileName).Count();
@@ -107,7 +110,13 @@
             Console.WriteLine($"Data row count: {dataRowCount}");
             Console.WriteLine();
 
-            return dataRowCount;
+            return new CsvProfileResult
+            {
+                FileName = Path.GetFileName(fileName),
+                Header = header,
+                LineCount = numberOfLines,
+                DataRowCount = dataRowCount
+            };
         }
     }
 }
