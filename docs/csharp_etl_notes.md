@@ -109,3 +109,23 @@ Missing: 0
 ```
 
 If any expected file is missing, the application prints the missing file names.
+
+## Markdown Report
+
+When profiling a directory, the application also generates a Markdown report.
+
+The report is created at:
+
+`data/processed/csv_profile_report.md`
+
+The report includes:
+
+- a summary of processed CSV files
+- total data row count
+- one table row per CSV file
+- line count and data row count for each file
+
+This report is tracked in Git as a small portfolio artifact.
+
+It allows someone reviewing the project to see the raw CSV profile results without running the C# application locally.
+
