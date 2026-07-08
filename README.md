@@ -64,6 +64,8 @@ The project includes a small C# console application located in `src/OlistEtl`.
 
 The helper can profile a single CSV file or all CSV files in a directory.
 
+The helper also generates a Markdown report at `data/processed/csv_profile_report.md`.
+
 Example usage:
 
 ```bash
@@ -77,3 +79,4 @@ Current output includes:
 - total line count
 - data row count
 - directory summary
+- generated Markdown report
