@@ -8,6 +8,7 @@ data/*.csv
 data/*.zip
 data/raw/*
 data/processed/*
+!data/processed/csv_profile_report.md
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
