@@ -70,3 +70,21 @@ GROUP BY
 ORDER BY
 	total_revenue DESC;
 GO
+
+-- 5. Which product categories have the highest freight cost compared to revenue?
+SELECT TOP 10
+	p.product_category_name_english,
+	COUNT(*) AS order_item_count,
+	SUM(oi.price) AS total_revenue,
+	SUM(oi.freight_value) AS total_freight,
+	SUM(oi.freight_value) / NULLIF(SUM(oi.price), 0) * 100 AS freight_to_revenue_percent
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_products AS p ON oi.product_key = p.product_key
+GROUP BY
+	p.product_category_name_english
+HAVING
+	COUNT(*) >= 100
+ORDER BY
+	freight_to_revenue_percent DESC;
+GO
