@@ -54,3 +54,19 @@ ORDER BY
 	d.year_number ASC,
 	d.month_number ASC;
 GO
+
+-- 4. Which seller states generate the most revenue?
+SELECT TOP 10
+	s.seller_state,
+	COUNT(*) AS order_item_count,
+	SUM(oi.price) AS total_revenue,
+	SUM(oi.freight_value) AS total_freight,
+	AVG(oi.price) AS average_item_price
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_sellers AS s ON oi.seller_key = s.seller_key
+GROUP BY
+	s.seller_state
+ORDER BY
+	total_revenue DESC;
+GO
