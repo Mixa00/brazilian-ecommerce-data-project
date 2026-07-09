@@ -88,3 +88,21 @@ HAVING
 ORDER BY
 	freight_to_revenue_percent DESC;
 GO
+
+-- 6. Which seller states depend most on freight cost?
+SELECT TOP 10
+	s.seller_state,
+	COUNT(*) AS order_item_count,
+	SUM(oi.price) AS total_revenue,
+	SUM(oi.freight_value) AS total_freight,
+	SUM(oi.freight_value) / NULLIF(SUM(oi.price), 0) * 100 AS freight_to_revenue_percent
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_sellers AS s ON oi.seller_key = s.seller_key
+GROUP BY
+	s.seller_state
+HAVING
+	COUNT(*) >= 100
+ORDER BY
+	freight_to_revenue_percent DESC;
+GO
