@@ -129,3 +129,13 @@ This report is tracked in Git as a small portfolio artifact.
 
 It allows someone reviewing the project to see the raw CSV profile results without running the C# application locally.
 
+## Code Structure
+
+The C# helper is split into small classes with separate responsibilities:
+
+- `Program.cs` handles command-line arguments and controls the application flow.
+- `CsvProfiler.cs` reads CSV files and creates profile results.
+- `CsvProfileResult.cs` represents the profiling result for one CSV file.
+- `MarkdownReportWriter.cs` generates the Markdown report from profile results.
+
+This structure keeps the main program simpler and makes the profiling and reporting logic easier to extend later.
