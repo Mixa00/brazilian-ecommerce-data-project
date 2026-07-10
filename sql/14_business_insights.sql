@@ -176,3 +176,35 @@ HAVING
 ORDER BY
 	average_item_price DESC;
 GO
+
+-- 11. What share of total revenue does each product category generate?
+WITH CategorySales_CTE AS (
+	SELECT
+		p.product_category_name_english AS product_category,
+		COUNT(*) AS order_item_count,
+		SUM(oi.price) AS total_revenue
+	FROM
+		dw.fact_order_items AS oi
+		JOIN dw.dim_products AS p ON oi.product_key = p.product_key
+	GROUP BY
+		p.product_category_name_english
+),
+TotalSales_CTE AS (
+	SELECT
+		SUM(total_revenue) AS overall_revenue
+	FROM
+		CategorySales_CTE		
+)
+SELECT
+	product_category,
+	order_item_count,
+	total_revenue,
+	total_revenue / overall_revenue * 100.0 AS revenue_share_percent
+FROM
+	CategorySales_CTE
+	CROSS JOIN TotalSales_CTE
+WHERE
+	order_item_count >= 100
+ORDER BY
+	revenue_share_percent DESC;
+GO
