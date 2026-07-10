@@ -159,3 +159,20 @@ HAVING
 ORDER BY
 	average_item_price DESC;
 GO
+
+-- 10. Which seller states have the highest average item price?
+SELECT TOP 10
+	s.seller_state,
+	COUNT(*) AS order_item_count,
+	SUM(oi.price) AS total_revenue,
+	AVG(oi.price) AS average_item_price
+FROM
+	dw.fact_order_items AS oi
+	JOIN dw.dim_sellers AS s ON oi.seller_key = s.seller_key
+GROUP BY
+	s.seller_state
+HAVING
+	COUNT(*) >= 100
+ORDER BY
+	average_item_price DESC;
+GO
